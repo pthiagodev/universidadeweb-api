@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pthiagodev.universidadeweb.api.domain.usuario.AutenticacaoRequest;
+import pthiagodev.universidadeweb.api.domain.usuario.Usuario;
+import pthiagodev.universidadeweb.api.infra.security.TokenService;
 
 @RestController
 @RequestMapping("/login")
@@ -18,12 +20,15 @@ public class AutenticacaoController {
     @Autowired
     private AuthenticationManager manager;
 
+    @Autowired
+    private TokenService tokenService;
+
     @PostMapping
     public ResponseEntity efetuarLogin(@RequestBody @Valid AutenticacaoRequest autenticacao) {
 
         var token = new UsernamePasswordAuthenticationToken(autenticacao.login(), autenticacao.senha());
         var authentication = manager.authenticate(token);
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(tokenService.gerarToken((Usuario) authentication.getPrincipal()));
     }
 }
