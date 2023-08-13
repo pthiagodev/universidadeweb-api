@@ -65,7 +65,14 @@ public class Usuario implements UserDetails {
         return ativo;
     }
 
+
+    public void atualiza(AtualizaUsuarioRequest dados) {
+        this.login = dados.login();
+        this.senha = dados.senha();
+    }
     public void excluir() {
         this.ativo = Boolean.FALSE;
     }
+
+
 }
