@@ -22,6 +22,13 @@ public class Usuario implements UserDetails {
     private Long id;
     private String login;
     private String senha;
+    private Boolean ativo;
+
+    public Usuario(UsuarioRequest usuarioRequest) {
+        this.login = usuarioRequest.login();
+        this.senha = usuarioRequest.senha();
+        this.ativo = Boolean.TRUE;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -55,6 +62,10 @@ public class Usuario implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return ativo;
+    }
+
+    public void excluir() {
+        this.ativo = Boolean.FALSE;
     }
 }
