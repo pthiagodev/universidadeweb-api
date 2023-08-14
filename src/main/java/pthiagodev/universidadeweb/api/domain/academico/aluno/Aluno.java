@@ -1,10 +1,11 @@
-package pthiagodev.universidadeweb.api.domain.aluno;
+package pthiagodev.universidadeweb.api.domain.academico.aluno;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import pthiagodev.universidadeweb.api.domain.academico.curso.Curso;
 
 @Table(name = "alunos")
 @Entity(name= "Aluno")
@@ -18,6 +19,7 @@ public class Aluno {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    private String email;
+    private String matricula;
+    private Curso curso;
 
 }
