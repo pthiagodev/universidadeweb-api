@@ -69,7 +69,7 @@ public class Usuario implements UserDetails {
 
     public void atualiza(AtualizaUsuarioRequest dados) {
         this.login = dados.login();
-        this.senha = dados.senha();
+        this.senha = new BCryptPasswordEncoder().encode(dados.senha());
     }
     public void excluir() {
         this.ativo = Boolean.FALSE;
