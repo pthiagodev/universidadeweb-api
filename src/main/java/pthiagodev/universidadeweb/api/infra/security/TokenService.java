@@ -10,7 +10,6 @@ import pthiagodev.universidadeweb.api.domain.usuario.Usuario;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
-import java.util.Date;
 
 @Service
 public class TokenService {
