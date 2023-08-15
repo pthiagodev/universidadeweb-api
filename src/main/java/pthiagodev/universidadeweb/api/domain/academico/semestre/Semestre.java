@@ -7,10 +7,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.NaturalId;
 import pthiagodev.universidadeweb.api.domain.academico.disciplina.Disciplina;
-import pthiagodev.universidadeweb.api.domain.academico.matrizCurricular.MatrizCurricular;
+import pthiagodev.universidadeweb.api.domain.academico.matrizcurricular.MatrizCurricular;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Table(name = "semestres")

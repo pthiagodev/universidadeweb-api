@@ -1,4 +1,4 @@
-package pthiagodev.universidadeweb.api.domain.academico.matrizCurricular;
+package pthiagodev.universidadeweb.api.domain.academico.matrizcurricular;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

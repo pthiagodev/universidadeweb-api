@@ -5,9 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import pthiagodev.universidadeweb.api.domain.academico.matrizCurricular.MatrizCurricular;
-
-import java.util.List;
+import pthiagodev.universidadeweb.api.domain.academico.matrizcurricular.MatrizCurricular;
 
 @Table(name = "cursos")
 @Entity(name= "Curso")
