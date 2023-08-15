@@ -3,10 +3,7 @@ package pthiagodev.universidadeweb.api.controller;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import pthiagodev.universidadeweb.api.domain.academico.curso.Curso;
 import pthiagodev.universidadeweb.api.domain.academico.curso.CursoRepository;
@@ -19,6 +16,13 @@ public class CursoController {
 
     @Autowired
     private CursoRepository repository;
+
+    @GetMapping("{id}")
+    public ResponseEntity buscar(@PathVariable Long id) {
+        var curso = repository.getReferenceById(id);
+
+        return ResponseEntity.ok(new CursoResponse(curso));
+    }
 
     @PostMapping
     @Transactional
