@@ -10,6 +10,8 @@ import pthiagodev.universidadeweb.api.domain.academico.curso.CursoRepository;
 import pthiagodev.universidadeweb.api.domain.academico.curso.CursoRequest;
 import pthiagodev.universidadeweb.api.domain.academico.curso.CursoResponse;
 
+import java.util.stream.Stream;
+
 @RestController
 @RequestMapping("/cursos")
 public class CursoController {
@@ -22,6 +24,12 @@ public class CursoController {
         var curso = repository.getReferenceById(id);
 
         return ResponseEntity.ok(new CursoResponse(curso));
+    }
+
+    @GetMapping
+    public ResponseEntity<Stream<CursoResponse>> listar() {
+        Stream<CursoResponse> cursos = repository.findAll().stream().map(CursoResponse::new);
+        return ResponseEntity.ok(cursos);
     }
 
     @PostMapping
