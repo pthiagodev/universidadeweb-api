@@ -10,12 +10,16 @@ import pthiagodev.universidadeweb.api.domain.academico.curso.*;
 
 import java.util.stream.Stream;
 
+@SuppressWarnings("rawtypes")
 @RestController
 @RequestMapping("/cursos")
 public class CursoController {
 
-    @Autowired
-    private CursoRepository repository;
+    private final CursoRepository repository;
+
+    public CursoController(CursoRepository repository) {
+        this.repository = repository;
+    }
 
     @GetMapping("{id}")
     public ResponseEntity buscar(@PathVariable Long id) {

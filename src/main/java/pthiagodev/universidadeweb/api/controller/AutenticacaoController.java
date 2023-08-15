@@ -18,11 +18,14 @@ import pthiagodev.universidadeweb.api.infra.security.TokenService;
 @RequestMapping("/login")
 public class AutenticacaoController {
 
-    @Autowired
-    private AuthenticationManager manager;
+    private final AuthenticationManager manager;
 
-    @Autowired
-    private TokenService tokenService;
+    private final TokenService tokenService;
+
+    public AutenticacaoController(AuthenticationManager manager, TokenService tokenService) {
+        this.manager = manager;
+        this.tokenService = tokenService;
+    }
 
     @PostMapping
     public ResponseEntity efetuarLogin(@RequestBody @Valid AutenticacaoRequest autenticacao) {

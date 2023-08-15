@@ -7,17 +7,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import pthiagodev.universidadeweb.api.domain.usuario.*;
-
-import java.util.List;
-import java.util.Objects;
 import java.util.stream.Stream;
 
+@SuppressWarnings("rawtypes")
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
 
-    @Autowired
-    private UsuarioRepository repository;
+    private final UsuarioRepository repository;
+
+    public UsuarioController(UsuarioRepository repository) {
+        this.repository = repository;
+    }
 
     @GetMapping("{id}")
     public ResponseEntity buscar(@PathVariable Long id) {
