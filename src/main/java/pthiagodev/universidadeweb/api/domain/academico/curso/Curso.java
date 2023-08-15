@@ -26,6 +26,11 @@ public class Curso {
     @OneToOne(mappedBy = "curso", cascade = CascadeType.ALL, orphanRemoval = true)
     private MatrizCurricular matrizCurricular;
 
+    public Curso(CursoRequest curso) {
+        this.nome = curso.nome();
+        this.codigo = curso.codigo();
+    }
+
     public void setMatrizCurricular(MatrizCurricular matriz) {
         if (matriz == null) {
             if (this.matrizCurricular != null)
