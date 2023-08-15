@@ -20,6 +20,9 @@ public class Aluno {
     private Long id;
     private String nome;
     private String matricula;
+
+    @OneToOne
+    @JoinColumn(name = "curso_id")
     private Curso curso;
 
 }
