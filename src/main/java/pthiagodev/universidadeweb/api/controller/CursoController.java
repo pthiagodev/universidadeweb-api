@@ -44,7 +44,7 @@ public class CursoController {
         return ResponseEntity.created(uri).body(new CursoResponse(curso));
     }
 
-    @PutMapping("{id}")
+    @PutMapping
     @Transactional
     public ResponseEntity atualizar(@RequestBody @Valid AtualizaCursoRequest dados) {
         var curso = repository.getReferenceById(dados.id());
