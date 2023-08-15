@@ -1,14 +1,12 @@
 package pthiagodev.universidadeweb.api.controller;
 
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-import pthiagodev.universidadeweb.api.domain.academico.curso.Curso;
-import pthiagodev.universidadeweb.api.domain.academico.curso.CursoRepository;
-import pthiagodev.universidadeweb.api.domain.academico.curso.CursoRequest;
-import pthiagodev.universidadeweb.api.domain.academico.curso.CursoResponse;
+import pthiagodev.universidadeweb.api.domain.academico.curso.*;
 
 import java.util.stream.Stream;
 
@@ -42,4 +40,22 @@ public class CursoController {
 
         return ResponseEntity.created(uri).body(new CursoResponse(curso));
     }
+
+    @PutMapping("{id}")
+    @Transactional
+    public ResponseEntity atualizar(@RequestBody @Valid AtualizaCursoRequest dados) {
+        var curso = repository.getReferenceById(dados.id());
+        curso.atualiza(dados);
+
+        return ResponseEntity.ok(new CursoResponse(curso));
+    }
+
+    @DeleteMapping("{id}")
+    @Transactional
+    public ResponseEntity excluir(@PathVariable Long id) {
+        repository.deleteById(id);
+
+        return ResponseEntity.noContent().build();
+    }
+
 }

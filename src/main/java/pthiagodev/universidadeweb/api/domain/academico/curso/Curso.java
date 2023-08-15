@@ -40,4 +40,9 @@ public class Curso {
         }
         this.matrizCurricular = matriz;
     }
+
+    public void atualiza(AtualizaCursoRequest dados) {
+        this.nome = dados.nome();
+    }
+
 }
