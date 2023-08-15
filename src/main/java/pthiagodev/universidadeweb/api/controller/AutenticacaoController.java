@@ -1,7 +1,6 @@
 package pthiagodev.universidadeweb.api.controller;
 
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,6 +13,7 @@ import pthiagodev.universidadeweb.api.domain.usuario.Usuario;
 import pthiagodev.universidadeweb.api.infra.security.TokenJWTResponse;
 import pthiagodev.universidadeweb.api.infra.security.TokenService;
 
+@SuppressWarnings("rawtypes")
 @RestController
 @RequestMapping("/login")
 public class AutenticacaoController {
