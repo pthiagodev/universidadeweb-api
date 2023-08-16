@@ -1,5 +1,6 @@
 package pthiagodev.universidadeweb.api.domain.academico.matrizcurricular;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -29,6 +30,10 @@ public class MatrizCurricular {
 
     @OneToMany(mappedBy = "matrizCurricular", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Semestre> semestres;
+
+    public MatrizCurricular(MatrizCurricularRequest dados) {
+        this.codigo = dados.codigo();
+    }
 
     public void setCurso(Curso curso) {
         this.curso = curso;
