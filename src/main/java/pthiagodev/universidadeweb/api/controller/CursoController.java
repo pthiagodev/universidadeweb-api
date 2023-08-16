@@ -9,7 +9,6 @@ import pthiagodev.universidadeweb.api.domain.academico.curso.*;
 
 import java.util.stream.Stream;
 
-@SuppressWarnings("rawtypes")
 @RestController
 @RequestMapping("/cursos")
 public class CursoController {
