@@ -10,4 +10,8 @@ public class SemestreService {
     public SemestreService(SemestreRepository semestreRepository) {
         this.semestreRepository = semestreRepository;
     }
+
+    public Semestre busca(Long id) {
+        return semestreRepository.getReferenceById(id);
+    }
 }
