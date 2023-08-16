@@ -9,6 +9,8 @@ import pthiagodev.universidadeweb.api.domain.academico.disciplina.DisciplinaRequ
 import pthiagodev.universidadeweb.api.domain.academico.disciplina.DisciplinaResponse;
 import pthiagodev.universidadeweb.api.domain.academico.disciplina.DisciplinaService;
 
+import java.util.stream.Stream;
+
 @RestController
 @RequestMapping("/disciplinas")
 public class DisciplinaController {
@@ -24,6 +26,12 @@ public class DisciplinaController {
         var disciplina = disciplinaService.busca(id);
 
         return ResponseEntity.ok(new DisciplinaResponse(disciplina));
+    }
+
+    @GetMapping
+    public ResponseEntity<Stream<DisciplinaResponse>> listar() {
+        Stream<DisciplinaResponse> disciplinas = disciplinaService.lista().stream().map(DisciplinaResponse::new);
+        return ResponseEntity.ok(disciplinas);
     }
 
     @PostMapping

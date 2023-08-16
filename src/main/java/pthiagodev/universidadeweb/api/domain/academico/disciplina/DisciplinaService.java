@@ -2,6 +2,9 @@ package pthiagodev.universidadeweb.api.domain.academico.disciplina;
 
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Stream;
+
 @Service
 public class DisciplinaService {
 
@@ -19,5 +22,9 @@ public class DisciplinaService {
 
     public Disciplina busca(Long id) {
         return disciplinaRepository.getReferenceById(id);
+    }
+
+    public List<Disciplina> lista() {
+        return disciplinaRepository.findAll();
     }
 }
