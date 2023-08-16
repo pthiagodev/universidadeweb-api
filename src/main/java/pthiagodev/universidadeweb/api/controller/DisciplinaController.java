@@ -46,8 +46,16 @@ public class DisciplinaController {
 
     @PutMapping
     @Transactional
-    public ResponseEntity atualizar(AtualizaDisciplinaRequest dados) {
+    public ResponseEntity atualizar(@RequestBody @Valid AtualizaDisciplinaRequest dados) {
         return ResponseEntity.ok(new DisciplinaResponse(disciplinaService.atualiza(dados)));
+    }
+
+    @DeleteMapping("{id}")
+    @Transactional
+    public ResponseEntity excluir(@PathVariable Long id) {
+        disciplinaService.exclui(id);
+
+        return ResponseEntity.noContent().build();
     }
 
 }
