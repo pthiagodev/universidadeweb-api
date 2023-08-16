@@ -2,6 +2,7 @@ package pthiagodev.universidadeweb.api.domain.academico.matrizcurricular;
 
 import org.springframework.stereotype.Service;
 import pthiagodev.universidadeweb.api.domain.academico.curso.CursoRepository;
+import pthiagodev.universidadeweb.api.domain.academico.semestre.Semestre;
 
 import java.util.List;
 
@@ -29,8 +30,38 @@ public class MatrizCurricularService {
         var curso = cursoRepository.getReferenceById(dados.idCurso());
         curso.setMatrizCurricular(matriz);
 
+        if (dados.semestres() != null) {
+            for (Semestre semestre : dados.semestres()) {
+                matriz.adicionaSemestre(semestre);
+            }
+        }
+
         return matrizCurricularRepository.save(matriz);
     }
 
+    public MatrizCurricular atualizaSemestres(AtualizaSemestresMatrizRequest dados) {
+        var matriz = matrizCurricularRepository.getReferenceById(dados.id());
+        var semestres = matriz.getSemestres();
+        var semestresAtualizados = dados.semestres();
 
+        for (Semestre semestre : semestres) {
+            if (!semestresAtualizados.contains(semestre))
+                matriz.removeSemestre(semestre);
+        }
+
+        for (Semestre semestreAtualizado : semestresAtualizados) {
+            if (!semestres.contains(semestreAtualizado))
+                matriz.adicionaSemestre(semestreAtualizado);
+        }
+
+        return matriz;
+    }
+
+    public void exclui(Long id) {
+        var matriz = matrizCurricularRepository.getReferenceById(id);
+        var curso = cursoRepository.getReferenceById(matriz.getId());
+        curso.setMatrizCurricular(null);
+
+        matrizCurricularRepository.delete(matriz);
+    }
 }
