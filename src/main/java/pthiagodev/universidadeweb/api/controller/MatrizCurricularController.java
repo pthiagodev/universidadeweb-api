@@ -1,6 +1,7 @@
 package pthiagodev.universidadeweb.api.controller;
 
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -8,7 +9,6 @@ import pthiagodev.universidadeweb.api.domain.academico.matrizcurricular.*;
 
 import java.util.stream.Stream;
 
-@SuppressWarnings("rawtypes")
 @RestController
 @RequestMapping("/matriz-curricular")
 public class MatrizCurricularController {
@@ -39,6 +39,20 @@ public class MatrizCurricularController {
         var uri = uriBuilder.path("/matriz-curricular/{id}").buildAndExpand(matriz.getId()).toUri();
 
         return ResponseEntity.created(uri).body(new MatrizCurricularResponse(matriz));
+    }
+
+    @PutMapping("{id}/semestres")
+    @Transactional
+    public ResponseEntity atualizarSemestres(@RequestBody @Valid AtualizaSemestresMatrizRequest dados) {
+        return ResponseEntity.ok(new MatrizCurricularResponse(matrizCurricularService.atualizaSemestres(dados)));
+    }
+
+    @DeleteMapping("{id}")
+    @Transactional
+    public ResponseEntity excluir(@PathVariable Long id) {
+        matrizCurricularService.exclui(id);
+
+        return ResponseEntity.noContent().build();
     }
 
 }
