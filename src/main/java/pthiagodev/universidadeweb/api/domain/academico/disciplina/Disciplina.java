@@ -37,4 +37,9 @@ public class Disciplina {
         this.codigo = dados.codigo();
         this.cargaHoraria = dados.cargaHoraria();
     }
+
+    public void atualiza(AtualizaDisciplinaRequest dados) {
+        this.nome = dados.nome();
+        this.cargaHoraria = dados.cargaHoraria();
+    }
 }

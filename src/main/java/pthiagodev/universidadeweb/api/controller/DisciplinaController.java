@@ -5,6 +5,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+import pthiagodev.universidadeweb.api.domain.academico.disciplina.AtualizaDisciplinaRequest;
 import pthiagodev.universidadeweb.api.domain.academico.disciplina.DisciplinaRequest;
 import pthiagodev.universidadeweb.api.domain.academico.disciplina.DisciplinaResponse;
 import pthiagodev.universidadeweb.api.domain.academico.disciplina.DisciplinaService;
@@ -41,6 +42,12 @@ public class DisciplinaController {
         var uri = uriBuilder.path("/disciplinas/{id}").buildAndExpand(disciplina.getId()).toUri();
 
         return ResponseEntity.created(uri).body(new DisciplinaResponse(disciplina));
+    }
+
+    @PutMapping
+    @Transactional
+    public ResponseEntity atualizar(AtualizaDisciplinaRequest dados) {
+        return ResponseEntity.ok(new DisciplinaResponse(disciplinaService.atualiza(dados)));
     }
 
 }

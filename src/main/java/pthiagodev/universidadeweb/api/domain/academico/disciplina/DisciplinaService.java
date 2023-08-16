@@ -27,4 +27,11 @@ public class DisciplinaService {
     public List<Disciplina> lista() {
         return disciplinaRepository.findAll();
     }
+
+    public Disciplina atualiza(AtualizaDisciplinaRequest dados) {
+        var disciplina = disciplinaRepository.getReferenceById(dados.id());
+        disciplina.atualiza(dados);
+
+        return disciplina;
+    }
 }
