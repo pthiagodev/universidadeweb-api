@@ -3,10 +3,7 @@ package pthiagodev.universidadeweb.api.controller;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import pthiagodev.universidadeweb.api.domain.academico.disciplina.DisciplinaRequest;
 import pthiagodev.universidadeweb.api.domain.academico.disciplina.DisciplinaResponse;
@@ -20,6 +17,13 @@ public class DisciplinaController {
 
     public DisciplinaController(DisciplinaService disciplinaService) {
         this.disciplinaService = disciplinaService;
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity buscar(@PathVariable Long id) {
+        var disciplina = disciplinaService.busca(id);
+
+        return ResponseEntity.ok(new DisciplinaResponse(disciplina));
     }
 
     @PostMapping

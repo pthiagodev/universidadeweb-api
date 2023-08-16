@@ -16,4 +16,8 @@ public class DisciplinaService {
 
         return disciplinaRepository.save(disciplina);
     }
+
+    public Disciplina busca(Long id) {
+        return disciplinaRepository.getReferenceById(id);
+    }
 }
