@@ -1,4 +1,4 @@
-package pthiagodev.universidadeweb.api.domain.academico.aluno;
+package pthiagodev.universidadeweb.api.domain.usuario.perfil.aluno;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
