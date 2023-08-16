@@ -3,6 +3,8 @@ package pthiagodev.universidadeweb.api.domain.academico.matrizcurricular;
 import org.springframework.stereotype.Service;
 import pthiagodev.universidadeweb.api.domain.academico.curso.CursoRepository;
 
+import java.util.List;
+
 @Service
 public class MatrizCurricularService {
 
@@ -18,6 +20,10 @@ public class MatrizCurricularService {
         return matrizCurricularRepository.getReferenceById(id);
     }
 
+    public List<MatrizCurricular> lista() {
+        return matrizCurricularRepository.findAll();
+    }
+
     public MatrizCurricular cadastra(MatrizCurricularRequest dados) {
         var matriz = new MatrizCurricular(dados);
         var curso = cursoRepository.getReferenceById(dados.idCurso());
@@ -25,5 +31,6 @@ public class MatrizCurricularService {
 
         return matrizCurricularRepository.save(matriz);
     }
+
 
 }

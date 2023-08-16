@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import pthiagodev.universidadeweb.api.domain.academico.matrizcurricular.*;
 
+import java.util.stream.Stream;
+
 @SuppressWarnings("rawtypes")
 @RestController
 @RequestMapping("/matriz-curricular")
@@ -22,6 +24,12 @@ public class MatrizCurricularController {
         var matriz = matrizCurricularService.busca(id);
 
         return ResponseEntity.ok(new MatrizCurricularResponse(matriz));
+    }
+
+    @GetMapping
+    public ResponseEntity<Stream<MatrizCurricularResponse>> listar() {
+        Stream<MatrizCurricularResponse> matrizes = matrizCurricularService.lista().stream().map(MatrizCurricularResponse::new);
+        return ResponseEntity.ok(matrizes);
     }
 
     @PostMapping
