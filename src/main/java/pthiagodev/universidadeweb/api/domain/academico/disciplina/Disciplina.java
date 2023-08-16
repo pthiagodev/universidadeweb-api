@@ -1,6 +1,5 @@
 package pthiagodev.universidadeweb.api.domain.academico.disciplina;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -27,7 +26,7 @@ public class Disciplina {
 
     @NaturalId
     private String codigo;
-    private int cargaHoraria;
+    private Integer cargaHoraria;
 
     @ManyToMany(mappedBy = "disciplinas")
     private Set<Semestre> semestres = new HashSet<>();
@@ -35,6 +34,11 @@ public class Disciplina {
     public Disciplina(DisciplinaRequest dados) {
         this.nome = dados.nome();
         this.codigo = dados.codigo();
+        this.cargaHoraria = dados.cargaHoraria();
+    }
+
+    public void atualiza(AtualizaDisciplinaRequest dados) {
+        this.nome = dados.nome();
         this.cargaHoraria = dados.cargaHoraria();
     }
 }
