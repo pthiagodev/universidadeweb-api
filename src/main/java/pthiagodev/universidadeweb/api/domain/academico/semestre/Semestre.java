@@ -37,6 +37,10 @@ public class Semestre {
     )
     private Set<Disciplina> disciplinas = new HashSet<>();
 
+    public Semestre(SemestreRequest dados) {
+        this.codigo = dados.codigo();
+    }
+
     public void setMatrizCurricular(MatrizCurricular matriz) {
         this.matrizCurricular = matriz;
     }

@@ -1,11 +1,13 @@
-package pthiagodev.universidadeweb.api.domain.academico.semestre;
+package pthiagodev.universidadeweb.api.controller;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-import pthiagodev.universidadeweb.api.domain.academico.disciplina.DisciplinaResponse;
+import pthiagodev.universidadeweb.api.domain.academico.semestre.SemestreRequest;
+import pthiagodev.universidadeweb.api.domain.academico.semestre.SemestreResponse;
+import pthiagodev.universidadeweb.api.domain.academico.semestre.SemestreService;
 
 import java.util.stream.Stream;
 
@@ -32,10 +34,10 @@ public class SemestreController {
         return ResponseEntity.ok(semestres);
     }
 
-    @GetMapping("{id}")
-    public ResponseEntity<Stream<SemestreResponse>> listarSemestresDoCurso(@PathVariable Long id) {
-      Stream<SemestreResponse> semestres = semestreService.listaSemestresPeloCurso(id).stream().map(SemestreResponse::new);
-      return ResponseEntity.ok(semestres);
+    @GetMapping("curso/{idCurso}")
+    public ResponseEntity<Stream<SemestreResponse>> listarSemestresDoCurso(@PathVariable Long idCurso) {
+        Stream<SemestreResponse> semestres = semestreService.listaSemestresDoCurso(idCurso).stream().map(SemestreResponse::new);
+        return ResponseEntity.ok(semestres);
     }
 
     @PostMapping
