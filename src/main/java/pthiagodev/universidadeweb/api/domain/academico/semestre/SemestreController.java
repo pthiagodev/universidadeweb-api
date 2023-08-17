@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.stream.Stream;
+
 @RestController
 @RequestMapping("/semestres")
 public class SemestreController {
@@ -22,6 +24,18 @@ public class SemestreController {
         var semestre = semestreService.busca(id);
 
         return ResponseEntity.ok(new SemestreResponse(semestre));
+    }
+
+    @GetMapping
+    public ResponseEntity<Stream<SemestreResponse>> listar() {
+        Stream<SemestreResponse> semestres = semestreService.lista().stream().map(SemestreResponse::new);
+        return ResponseEntity.ok(semestres);
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<Stream<SemestreResponse>> listarSemestresDoCurso(@PathVariable Long id) {
+      Stream<SemestreResponse> semestres = semestreService.listaSemestresPeloCurso(id).stream().map(SemestreResponse::new);
+      return ResponseEntity.ok(semestres);
     }
 
 }
