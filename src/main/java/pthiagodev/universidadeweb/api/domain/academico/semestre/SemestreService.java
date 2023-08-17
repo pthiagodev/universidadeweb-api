@@ -25,4 +25,8 @@ public class SemestreService {
     public List<Semestre> listaSemestresPeloCurso(Long id) {
         return semestreRepository.findAllByMatrizCurricularId(id);
     }
+
+    public Semestre cadastra(SemestreRequest dados) {
+
+    }
 }
